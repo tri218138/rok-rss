@@ -220,6 +220,32 @@ document.addEventListener('DOMContentLoaded', () => {
         displayResult(resourceResult, speedupResult, originalTimeCost);
     });
 
+    const fetchGitHubStars = async () => {
+        const starCountElement = document.getElementById('github-star-count');
+        if (!starCountElement) return;
+
+        try {
+            const response = await fetch('https://api.github.com/repos/tri218138/rok-rss');
+            if (!response.ok) {
+                starCountElement.style.display = 'none';
+                return;
+            }
+            const data = await response.json();
+            const starCount = data.stargazers_count;
+
+            if (starCount !== undefined) {
+                starCountElement.textContent = starCount;
+            } else {
+                starCountElement.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Error fetching GitHub stars:', error);
+            starCountElement.style.display = 'none';
+        }
+    };
+
+    fetchGitHubStars();
+
     // We need to re-implement the HTML generation functions fully
     window.generateResourceResultHtml = (result) => {
         let html = '<h3>Resources</h3>';

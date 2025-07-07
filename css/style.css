@@ -10,7 +10,20 @@ body {
 
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 1400px;
+}
+
+.app-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.left-panel, .right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 h1, h2 {
@@ -290,6 +303,7 @@ footer {
     margin-top: 30px;
     padding: 20px 0;
     border-top: 1px solid #dddfe2;
+    width: 100%; /* Ensure footer spans width */
 }
 
 footer p {
@@ -330,6 +344,23 @@ footer p a:hover {
     transform: scale(0.98);
 }
 
+.star-count {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-left: 6px;
+    min-width: 18px; /* Prevents shrinking while loading */
+    text-align: center;
+}
+
 .github-icon {
     fill: currentColor;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .app-layout {
+        grid-template-columns: 1fr;
+    }
 } 
