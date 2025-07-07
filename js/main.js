@@ -89,12 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const generateResourceResultHtml = (result) => {
-        let html = '<h3>Resources</h3><p id="result-message-resources"';
+        let html = '<h3>Resources</h3>';
         if (result.isSufficient) {
-            html += ' class="success">Congratulations! You have enough resources.</p>';
+            html += '<p id="result-message-resources" class="success">Congratulations! You have enough resources.</p>';
             html += generateAllocationHtml(result.chestAllocation, result.remainingChests);
         } else {
-            html += ' class="failure">You do not have enough resources. Final deficit:</p>';
+            html += '<p id="result-message-resources" class="failure">You do not have enough resources.</p>';
+            html += generateAllocationHtml(result.chestAllocation, result.remainingChests);
+            html += '<h4>Final Deficit (after using chests):</h4>';
             html += '<div class="deficit-details">';
             for (const resource in result.finalDeficit) {
                 html += `<div class="deficit-item">${resource.charAt(0).toUpperCase() + resource.slice(1)}: ${result.finalDeficit[resource].toLocaleString()}</div>`;
@@ -111,12 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
             html += `<p class="effective-time-info">Initial time: ${formatMinutes(originalTimeCost)}<br>Effective time after buffs: <strong>${formatMinutes(result.timeAfterBuffs)}</strong></p>`;
         }
 
-        html += '<p id="result-message-speedups"';
         if (result.isSufficient) {
-            html += ' class="success">Congratulations! You have enough speedups.</p>';
+            html += '<p id="result-message-speedups" class="success">Congratulations! You have enough speedups.</p>';
             html += generateSpeedupAllocationHtml(result.chestAllocation, result.remainingChests);
         } else {
-            html += ' class="failure">You do not have enough speedups. Final deficit:</p>';
+            html += '<p id="result-message-speedups" class="failure">You do not have enough speedups.</p>';
+            html += generateSpeedupAllocationHtml(result.chestAllocation, result.remainingChests);
+            html += '<h4>Final Deficit (after using chests):</h4>';
             const time = result.finalDeficit.time;
             html += `<div class="deficit-details"><div class="deficit-item">Time: ${formatMinutes(time)}</div></div>`;
         }
@@ -218,6 +221,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // We need to re-implement the HTML generation functions fully
+    window.generateResourceResultHtml = (result) => {
+        let html = '<h3>Resources</h3>';
+        if (result.isSufficient) {
+            html += '<p id="result-message-resources" class="success">Congratulations! You have enough resources.</p>';
+            html += window.generateAllocationHtml(result.chestAllocation, result.remainingChests);
+        } else {
+            html += '<p id="result-message-resources" class="failure">You do not have enough resources.</p>';
+            html += window.generateAllocationHtml(result.chestAllocation, result.remainingChests);
+            html += '<h4>Final Deficit (after using chests):</h4>';
+            html += '<div class="deficit-details">';
+            for (const resource in result.finalDeficit) {
+                html += `<div class="deficit-item">${resource.charAt(0).toUpperCase() + resource.slice(1)}: ${result.finalDeficit[resource].toLocaleString()}</div>`;
+            }
+            html += '</div>';
+        }
+        return html;
+    };
+    
+    const originalGenerateSpeedupResultHtml = generateSpeedupResultHtml;
     window.generateSpeedupResultHtml = (result, originalTimeCost) => {
         let html = '<h3>Speedups</h3>';
 
@@ -225,12 +247,13 @@ document.addEventListener('DOMContentLoaded', () => {
             html += `<p class="effective-time-info">Initial time: ${formatMinutes(originalTimeCost)}<br>Effective time after buffs: <strong>${formatMinutes(result.timeAfterBuffs)}</strong></p>`;
         }
 
-        html += '<p id="result-message-speedups"';
         if (result.isSufficient) {
-            html += ' class="success">Congratulations! You have enough speedups.</p>';
+            html += '<p id="result-message-speedups" class="success">Congratulations! You have enough speedups.</p>';
             html += window.generateSpeedupAllocationHtml(result.chestAllocation, result.remainingChests);
         } else {
-            html += ' class="failure">You do not have enough speedups. Final deficit:</p>';
+            html += '<p id="result-message-speedups" class="failure">You do not have enough speedups.</p>';
+            html += window.generateSpeedupAllocationHtml(result.chestAllocation, result.remainingChests);
+            html += '<h4>Final Deficit (after using chests):</h4>';
             const time = result.finalDeficit.time;
             html += `<div class="deficit-details"><div class="deficit-item">Time: ${formatMinutes(time)}</div></div>`;
         }
