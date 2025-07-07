@@ -24,11 +24,42 @@ h1 {
 }
 
 h2 {
+    color: #1c1e21;
+    text-align: center;
     font-size: 1.5em;
     margin-top: 0;
     margin-bottom: 15px;
     border-bottom: 1px solid #dddfe2;
     padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 1.2em;
+}
+
+.usage-note {
+    background-color: #e7f3fe;
+    border: 1px solid #cce0f5;
+    padding: 15px;
+}
+
+.usage-note p {
+    margin: 0;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    font-style: normal;
+}
+
+.usage-note code {
+    background-color: #d1e7fd;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: Consolas, 'Courier New', monospace;
 }
 
 .card {
