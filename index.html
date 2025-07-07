@@ -55,23 +55,89 @@
         </div>
 
         <div class="card">
-            <h2>Building Upgrade Cost</h2>
+            <h2>Current Speedups</h2>
+            <p class="subtitle">Enter values in minutes or use 'h' for hours / 'd' for days.</p>
             <div class="resource-inputs">
                 <div class="input-group">
-                    <label for="cost-food">Food</label>
-                    <input type="text" id="cost-food" placeholder="e.g., 5M">
+                    <label for="current-building-su">Building</label>
+                    <input type="text" id="current-building-su" placeholder="e.g., 2d 4h">
                 </div>
                 <div class="input-group">
-                    <label for="cost-wood">Wood</label>
-                    <input type="text" id="cost-wood" placeholder="e.g., 5M">
+                    <label for="current-research-su">Research</label>
+                    <input type="text" id="current-research-su" placeholder="e.g., 1d 12h">
                 </div>
                 <div class="input-group">
-                    <label for="cost-stone">Stone</label>
-                    <input type="text" id="cost-stone" placeholder="e.g., 5M">
+                    <label for="current-training-su">Training</label>
+                    <input type="text" id="current-training-su" placeholder="e.g., 8h 30m">
                 </div>
                 <div class="input-group">
-                    <label for="cost-gold">Gold</label>
-                    <input type="text" id="cost-gold" placeholder="e.g., 5M">
+                    <label for="current-healing-su">Healing</label>
+                    <input type="text" id="current-healing-su" placeholder="e.g., 4h">
+                </div>
+                <div class="input-group">
+                    <label for="current-general-su">General</label>
+                    <input type="text" id="current-general-su" placeholder="e.g., 5d">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Selectable Speedup Chests</h2>
+            <div class="resource-inputs">
+                <div class="input-group">
+                    <label for="level2-su-chests">Level 2 (60m)</label>
+                    <input type="number" id="level2-su-chests" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="level3-su-chests">Level 3 (8h)</label>
+                    <input type="number" id="level3-su-chests" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="level4-su-chests">Level 4 (24h)</label>
+                    <input type="number" id="level4-su-chests" placeholder="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Upgrade Cost</h2>
+            <div class="upgrade-cost-section">
+                <h3>Resources</h3>
+                <div class="resource-inputs">
+                    <div class="input-group">
+                        <label for="cost-food">Food</label>
+                        <input type="text" id="cost-food" placeholder="e.g., 5M">
+                    </div>
+                    <div class="input-group">
+                        <label for="cost-wood">Wood</label>
+                        <input type="text" id="cost-wood" placeholder="e.g., 5M">
+                    </div>
+                    <div class="input-group">
+                        <label for="cost-stone">Stone</label>
+                        <input type="text" id="cost-stone" placeholder="e.g., 5M">
+                    </div>
+                    <div class="input-group">
+                        <label for="cost-gold">Gold</label>
+                        <input type="text" id="cost-gold" placeholder="e.g., 5M">
+                    </div>
+                </div>
+            </div>
+            <div class="upgrade-cost-section">
+                <h3>Time</h3>
+                <div class="resource-inputs time-cost">
+                    <div class="input-group">
+                        <label for="cost-time-type">Upgrade Type</label>
+                        <select id="cost-time-type">
+                            <option value="building" selected>Building</option>
+                            <option value="research">Research</option>
+                            <option value="training">Training</option>
+                            <option value="healing">Healing</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="cost-time">Time Required</label>
+                        <input type="text" id="cost-time" placeholder="e.g., 10d 5h 30m">
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,8 +146,9 @@
 
         <div id="result-container" class="card hidden">
             <h2>Calculation Result</h2>
-            <p id="result-message"></p>
-            <div id="result-details"></div>
+            <div id="resource-result"></div>
+            <hr id="result-divider" class="hidden">
+            <div id="speedup-result"></div>
         </div>
     </div>
 

@@ -23,4 +23,11 @@ const CHEST_VALUES = {
         stone: 375000,
         gold: 200000
     }
+};
+
+const SPEEDUP_CHEST_VALUES = {
+    // values in minutes
+    level2: 60,
+    level3: 480, // 8 hours
+    level4: 1440 // 24 hours
 }; 

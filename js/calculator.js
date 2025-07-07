@@ -49,4 +49,56 @@ function calculateUpgradeFeasibility(currentResources, upgradeCost, selectableCh
         chestAllocation,
         remainingChests: chestsToUse
     };
+}
+
+function calculateSpeedupFeasibility(currentSpeedups, upgradeCost, selectableSpeedupChests) {
+    const upgradeType = upgradeCost.type;
+    const initialTimeCost = upgradeCost.value;
+
+    if (!upgradeType || initialTimeCost <= 0) {
+        return { isSufficient: true, wasNeeded: false };
+    }
+
+    const specificSpeedups = currentSpeedups[upgradeType] || 0;
+    const generalSpeedups = currentSpeedups.general || 0;
+    const totalApplicableSpeedups = specificSpeedups + generalSpeedups;
+
+    const initialDeficit = Math.max(0, initialTimeCost - totalApplicableSpeedups);
+
+    if (initialDeficit === 0) {
+        return { isSufficient: true, wasNeeded: true, initialDeficit: 0, finalDeficit: {}, chestAllocation: {}, remainingChests: selectableSpeedupChests };
+    }
+
+    let remainingDeficit = initialDeficit;
+    let chestsToUse = { ...selectableSpeedupChests };
+    const chestAllocation = {
+        level2: 0,
+        level3: 0,
+        level4: 0
+    };
+    
+    const chestLevelPriority = ['level4', 'level3', 'level2'];
+
+    chestLevelPriority.forEach(level => {
+        const timeValuePerChest = SPEEDUP_CHEST_VALUES[level];
+        if (timeValuePerChest > 0) {
+            while (remainingDeficit > 0 && chestsToUse[level] > 0) {
+                chestsToUse[level]--;
+                chestAllocation[level]++;
+                remainingDeficit -= timeValuePerChest;
+            }
+        }
+    });
+
+    const finalDeficit = (remainingDeficit > 0) ? Math.ceil(remainingDeficit) : 0;
+    const isSufficient = finalDeficit === 0;
+
+    return {
+        isSufficient,
+        wasNeeded: true,
+        initialDeficit,
+        finalDeficit: isSufficient ? {} : { time: finalDeficit },
+        chestAllocation,
+        remainingChests: chestsToUse
+    };
 } 
