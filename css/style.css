@@ -13,6 +13,32 @@ body {
     max-width: 1400px;
 }
 
+.header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.lang-switcher {
+    display: flex;
+    gap: 5px;
+}
+
+.lang-switcher button {
+    background-color: #f0f2f5;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.lang-switcher button:hover {
+    background-color: #e7e7e7;
+}
+
 .app-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -33,7 +59,7 @@ h1, h2 {
 
 h1 {
     font-size: 2em;
-    margin-bottom: 20px;
+    margin: 0;
 }
 
 h2 {

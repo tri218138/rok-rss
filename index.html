@@ -8,103 +8,110 @@
 </head>
 <body>
     <div class="container">
-        <h1>RoK Resource Calculator</h1>
+        <div class="header-controls">
+            <h1 data-i18n-key="title">RoK Resource Calculator</h1>
+            <div class="lang-switcher">
+                <button data-lang="en">EN</button>
+                <button data-lang="vi">VI</button>
+            </div>
+        </div>
 
         <div class="card usage-note">
-            <p><strong>Quick Guide:</strong> You can use suffixes for easier input!
-                <br>For resources: <code>K</code> (thousands), <code>M</code> (millions), <code>B</code> (billions). Example: <code>1.5B</code>
-                <br>For time: <code>d</code> (days), <code>h</code> (hours), <code>m</code> (minutes). Example: <code>10d 5h 30m</code>
-                <br> Follow <a href="https://riseofkingdoms.fandom.com/wiki/Buildings/City_Hall" target="_blank" rel="noopener noreferrer">https://riseofkingdoms.fandom.com/wiki/</a> to see the full information.
+            <p>
+                <span data-i18n-key="guideTitle"></span><br>
+                <span data-i18n-key="guideResources"></span><br>
+                <span data-i18n-key="guideTime"></span><br>
+                <span data-i18n-key="guideLink"></span>
             </p>
         </div>
 
         <div class="app-layout">
             <div class="left-panel">
                 <div class="card">
-                    <h2><span class="icon">📦</span> Current Resources</h2>
+                    <h2><span class="icon">📦</span><span data-i18n-key="currentResources"></span></h2>
                     <div class="resource-inputs">
                         <div class="input-group">
-                            <label for="current-food">Food</label>
-                            <input type="text" id="current-food" placeholder="e.g., 1.5M">
+                            <label for="current-food" data-i18n-key="resourceFood"></label>
+                            <input type="text" id="current-food" data-i18n-placeholder-key="placeholderResource">
                         </div>
                         <div class="input-group">
-                            <label for="current-wood">Wood</label>
-                            <input type="text" id="current-wood" placeholder="e.g., 1.5M">
+                            <label for="current-wood" data-i18n-key="resourceWood"></label>
+                            <input type="text" id="current-wood" data-i18n-placeholder-key="placeholderResource">
                         </div>
                         <div class="input-group">
-                            <label for="current-stone">Stone</label>
-                            <input type="text" id="current-stone" placeholder="e.g., 1.5M">
+                            <label for="current-stone" data-i18n-key="resourceStone"></label>
+                            <input type="text" id="current-stone" data-i18n-placeholder-key="placeholderResource">
                         </div>
                         <div class="input-group">
-                            <label for="current-gold">Gold</label>
-                            <input type="text" id="current-gold" placeholder="e.g., 1.5M">
+                            <label for="current-gold" data-i18n-key="resourceGold"></label>
+                            <input type="text" id="current-gold" data-i18n-placeholder-key="placeholderResource">
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h2><span class="icon">🎁</span> Selectable Resource Chests</h2>
+                    <h2><span class="icon">🎁</span><span data-i18n-key="selectableResourceChests"></span></h2>
                     <div class="resource-inputs">
                         <div class="input-group">
-                            <label for="level1-chests">Level 1</label>
-                            <input type="number" id="level1-chests" placeholder="0">
+                            <label for="level1-chests" data-i18n-key="chestLevel1"></label>
+                            <input type="number" id="level1-chests" data-i18n-placeholder-key="placeholderChest">
                         </div>
                         <div class="input-group">
-                            <label for="level2-chests">Level 2</label>
-                            <input type="number" id="level2-chests" placeholder="0">
+                            <label for="level2-chests" data-i18n-key="chestLevel2"></label>
+                            <input type="number" id="level2-chests" data-i18n-placeholder-key="placeholderChest">
                         </div>
                         <div class="input-group">
-                            <label for="level3-chests">Level 3</label>
-                            <input type="number" id="level3-chests" placeholder="0">
+                            <label for="level3-chests" data-i18n-key="chestLevel3"></label>
+                            <input type="number" id="level3-chests" data-i18n-placeholder-key="placeholderChest">
                         </div>
                         <div class="input-group">
-                            <label for="level4-chests">Level 4</label>
-                            <input type="number" id="level4-chests" placeholder="0">
+                            <label for="level4-chests" data-i18n-key="chestLevel4"></label>
+                            <input type="number" id="level4-chests" data-i18n-placeholder-key="placeholderChest">
                         </div>
                     </div>
                 </div>
                 
                 <div class="card">
-                    <h2><span class="icon">⏱️</span> Current Speedups</h2>
-                    <p class="subtitle">Enter values in minutes or use 'h' for hours / 'd' for days.</p>
+                    <h2><span class="icon">⏱️</span><span data-i18n-key="currentSpeedups"></span></h2>
+                    <p class="subtitle" data-i18n-key="speedupSubtitle"></p>
                     <div class="resource-inputs">
                         <div class="input-group">
-                            <label for="current-building-su">Building</label>
-                            <input type="text" id="current-building-su" placeholder="e.g., 2d 4h">
+                            <label for="current-building-su" data-i18n-key="speedupBuilding"></label>
+                            <input type="text" id="current-building-su" data-i18n-placeholder-key="placeholderSpeedup">
                         </div>
                         <div class="input-group">
-                            <label for="current-research-su">Research</label>
-                            <input type="text" id="current-research-su" placeholder="e.g., 1d 12h">
+                            <label for="current-research-su" data-i18n-key="speedupResearch"></label>
+                            <input type="text" id="current-research-su" data-i18n-placeholder-key="placeholderSpeedup">
                         </div>
                         <div class="input-group">
-                            <label for="current-training-su">Training</label>
-                            <input type="text" id="current-training-su" placeholder="e.g., 8h 30m">
+                            <label for="current-training-su" data-i18n-key="speedupTraining"></label>
+                            <input type="text" id="current-training-su" data-i18n-placeholder-key="placeholderSpeedup">
                         </div>
                         <div class="input-group">
-                            <label for="current-healing-su">Healing</label>
-                            <input type="text" id="current-healing-su" placeholder="e.g., 4h">
+                            <label for="current-healing-su" data-i18n-key="speedupHealing"></label>
+                            <input type="text" id="current-healing-su" data-i18n-placeholder-key="placeholderSpeedup">
                         </div>
                         <div class="input-group">
-                            <label for="current-general-su">General</label>
-                            <input type="text" id="current-general-su" placeholder="e.g., 5d">
+                            <label for="current-general-su" data-i18n-key="speedupGeneral"></label>
+                            <input type="text" id="current-general-su" data-i18n-placeholder-key="placeholderSpeedup">
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h2><span class="icon">🎁</span> Selectable Speedup Chests</h2>
+                    <h2><span class="icon">🎁</span><span data-i18n-key="selectableSpeedupChests"></span></h2>
                     <div class="resource-inputs">
                         <div class="input-group">
-                            <label for="level2-su-chests">Level 2 (60m)</label>
-                            <input type="number" id="level2-su-chests" placeholder="0">
+                            <label for="level2-su-chests" data-i18n-key="speedupChestLevel2"></label>
+                            <input type="number" id="level2-su-chests" data-i18n-placeholder-key="placeholderChest">
                         </div>
                         <div class="input-group">
-                            <label for="level3-su-chests">Level 3 (8h)</label>
-                            <input type="number" id="level3-su-chests" placeholder="0">
+                            <label for="level3-su-chests" data-i18n-key="speedupChestLevel3"></label>
+                            <input type="number" id="level3-su-chests" data-i18n-placeholder-key="placeholderChest">
                         </div>
                         <div class="input-group">
-                            <label for="level4-su-chests">Level 4 (24h)</label>
-                            <input type="number" id="level4-su-chests" placeholder="0">
+                            <label for="level4-su-chests" data-i18n-key="speedupChestLevel4"></label>
+                            <input type="number" id="level4-su-chests" data-i18n-placeholder-key="placeholderChest">
                         </div>
                     </div>
                 </div>
@@ -112,60 +119,60 @@
 
             <div class="right-panel">
                 <div class="card">
-                    <h2><span class="icon">🏛️</span> Upgrade Cost</h2>
+                    <h2><span class="icon">🏛️</span><span data-i18n-key="upgradeCost"></span></h2>
                     <div class="upgrade-cost-section">
-                        <h3>Resources</h3>
+                        <h3 data-i18n-key="resources"></h3>
                         <div class="resource-inputs">
                             <div class="input-group">
-                                <label for="cost-food">Food</label>
-                                <input type="text" id="cost-food" placeholder="e.g., 5M">
+                                <label for="cost-food" data-i18n-key="resourceFood"></label>
+                                <input type="text" id="cost-food" data-i18n-placeholder-key="placeholderResource">
                             </div>
                             <div class="input-group">
-                                <label for="cost-wood">Wood</label>
-                                <input type="text" id="cost-wood" placeholder="e.g., 5M">
+                                <label for="cost-wood" data-i18n-key="resourceWood"></label>
+                                <input type="text" id="cost-wood" data-i18n-placeholder-key="placeholderResource">
                             </div>
                             <div class="input-group">
-                                <label for="cost-stone">Stone</label>
-                                <input type="text" id="cost-stone" placeholder="e.g., 5M">
+                                <label for="cost-stone" data-i18n-key="resourceStone"></label>
+                                <input type="text" id="cost-stone" data-i18n-placeholder-key="placeholderResource">
                             </div>
                             <div class="input-group">
-                                <label for="cost-gold">Gold</label>
-                                <input type="text" id="cost-gold" placeholder="e.g., 5M">
+                                <label for="cost-gold" data-i18n-key="resourceGold"></label>
+                                <input type="text" id="cost-gold" data-i18n-placeholder-key="placeholderResource">
                             </div>
                         </div>
                     </div>
                     <div class="upgrade-cost-section">
-                        <h3>Time</h3>
+                        <h3 data-i18n-key="time"></h3>
                         <div class="resource-inputs time-cost">
                             <div class="input-group">
-                                <label for="cost-time-type">Upgrade Type</label>
+                                <label for="cost-time-type" data-i18n-key="upgradeType"></label>
                                 <select id="cost-time-type">
-                                    <option value="building" selected>Building</option>
-                                    <option value="research">Research</option>
-                                    <option value="training">Training</option>
-                                    <option value="healing">Healing</option>
+                                    <option value="building" data-i18n-key="speedupBuilding" selected></option>
+                                    <option value="research" data-i18n-key="speedupResearch"></option>
+                                    <option value="training" data-i18n-key="speedupTraining"></option>
+                                    <option value="healing" data-i18n-key="speedupHealing"></option>
                                 </select>
                             </div>
                             <div class="input-group">
-                                <label for="cost-time">Time Required</label>
-                                <input type="text" id="cost-time" placeholder="e.g., 10d 5h 30m">
+                                <label for="cost-time" data-i18n-key="timeRequired"></label>
+                                <input type="text" id="cost-time" data-i18n-placeholder-key="placeholderTime">
                             </div>
                             <div class="input-group">
-                                <label for="speed-buff">Speed Buff (%)</label>
-                                <input type="number" id="speed-buff" placeholder="e.g., 88">
+                                <label for="speed-buff" data-i18n-key="speedBuff"></label>
+                                <input type="number" id="speed-buff" data-i18n-placeholder-key="placeholderBuff">
                             </div>
                             <div class="input-group">
-                                <label for="alliance-helps">Alliance Helps</label>
-                                <input type="number" id="alliance-helps" placeholder="e.g., 30">
+                                <label for="alliance-helps" data-i18n-key="allianceHelps"></label>
+                                <input type="number" id="alliance-helps" data-i18n-placeholder-key="placeholderHelps">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <button id="calculate-btn">Calculate</button>
+                <button id="calculate-btn" data-i18n-key="calculate"></button>
 
                 <div id="result-container" class="card hidden">
-                    <h2>Calculation Result</h2>
+                    <h2 data-i18n-key="calculationResult"></h2>
                     <div id="resource-result"></div>
                     <hr id="result-divider" class="hidden">
                     <div id="speedup-result"></div>
@@ -174,12 +181,12 @@
         </div>
 
         <footer>
-            <p>Created by <a href="https://github.com/tri218138" target="_blank" rel="noopener noreferrer">Tri Doan</a>.</p>
+            <p data-i18n-key="createdBy"></p>
             <a href="https://github.com/tri218138/rok-rss" class="github-link" target="_blank" rel="noopener noreferrer">
                 <svg height="24" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true" class="github-icon">
                     <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.19.01-.82.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21-.15.46-.55.38A8.013 8.013 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
                 </svg>
-                Star
+                <span data-i18n-key="githubStar"></span>
                 <span id="github-star-count" class="star-count">...</span>
             </a>
         </footer>
@@ -187,7 +194,7 @@
 
     <div id="quick-calculator" class="calculator-widget hidden">
         <div class="calculator-header">
-            <span>Quick Calculator</span>
+            <span data-i18n-key="quickCalculator"></span>
             <button id="close-calculator-btn" class="close-btn">&times;</button>
         </div>
         <div class="calculator-display">
@@ -222,8 +229,8 @@
 
     <button id="toggle-calculator-btn" class="calculator-toggle">🧮</button>
 
+    <script type="module" src="js/main.js"></script>
     <script src="js/constants.js"></script>
     <script src="js/calculator.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html> 
