@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rise of Kingdoms - Resource Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>RoK Resource Calculator</h1>
+
+        <div class="card">
+            <h2>Current Resources</h2>
+            <div class="resource-inputs">
+                <div class="input-group">
+                    <label for="current-food">Food</label>
+                    <input type="text" id="current-food" placeholder="e.g., 1.5M">
+                </div>
+                <div class="input-group">
+                    <label for="current-wood">Wood</label>
+                    <input type="text" id="current-wood" placeholder="e.g., 1.5M">
+                </div>
+                <div class="input-group">
+                    <label for="current-stone">Stone</label>
+                    <input type="text" id="current-stone" placeholder="e.g., 1.5M">
+                </div>
+                <div class="input-group">
+                    <label for="current-gold">Gold</label>
+                    <input type="text" id="current-gold" placeholder="e.g., 1.5M">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Selectable Chests</h2>
+            <div class="resource-inputs">
+                <div class="input-group">
+                    <label for="level1-chests">Level 1</label>
+                    <input type="number" id="level1-chests" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="level2-chests">Level 2</label>
+                    <input type="number" id="level2-chests" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="level3-chests">Level 3</label>
+                    <input type="number" id="level3-chests" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="level4-chests">Level 4</label>
+                    <input type="number" id="level4-chests" placeholder="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Building Upgrade Cost</h2>
+            <div class="resource-inputs">
+                <div class="input-group">
+                    <label for="cost-food">Food</label>
+                    <input type="text" id="cost-food" placeholder="e.g., 5M">
+                </div>
+                <div class="input-group">
+                    <label for="cost-wood">Wood</label>
+                    <input type="text" id="cost-wood" placeholder="e.g., 5M">
+                </div>
+                <div class="input-group">
+                    <label for="cost-stone">Stone</label>
+                    <input type="text" id="cost-stone" placeholder="e.g., 5M">
+                </div>
+                <div class="input-group">
+                    <label for="cost-gold">Gold</label>
+                    <input type="text" id="cost-gold" placeholder="e.g., 5M">
+                </div>
+            </div>
+        </div>
+
+        <button id="calculate-btn">Calculate</button>
+
+        <div id="result-container" class="card hidden">
+            <h2>Calculation Result</h2>
+            <p id="result-message"></p>
+            <div id="result-details"></div>
+        </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
