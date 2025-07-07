@@ -287,4 +287,72 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     calculateBtn.removeEventListener('click', () => {}); // This is tricky, easier to rewrite the file
+
+    const initQuickCalculator = () => {
+        const calculator = document.getElementById('quick-calculator');
+        const toggleBtn = document.getElementById('toggle-calculator-btn');
+        const closeBtn = document.getElementById('close-calculator-btn');
+        const screen = document.getElementById('calculator-screen');
+        const keys = document.querySelector('.calculator-keys');
+
+        let currentInput = '';
+        let operator = '';
+        let previousInput = '';
+
+        const updateScreen = () => {
+            screen.value = currentInput || previousInput || '0';
+        };
+
+        const calculate = () => {
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+            if (isNaN(prev) || isNaN(current)) return;
+            
+            let result;
+            switch (operator) {
+                case '+': result = prev + current; break;
+                case '−': result = prev - current; break;
+                case '×': result = prev * current; break;
+                case '÷': result = prev / current; break;
+                default: return;
+            }
+            currentInput = result.toString();
+            operator = '';
+            previousInput = '';
+        };
+
+        keys.addEventListener('click', (e) => {
+            if (!e.target.matches('button')) return;
+            const key = e.target.dataset.key;
+
+            if (/\d/.test(key)) {
+                currentInput += key;
+            } else if (key === '.') {
+                if (!currentInput.includes('.')) {
+                    currentInput += '.';
+                }
+            } else if (key === 'clear') {
+                currentInput = '';
+                operator = '';
+                previousInput = '';
+            } else if (key === 'backspace') {
+                currentInput = currentInput.slice(0, -1);
+            } else if (key === '=') {
+                if (currentInput && previousInput) {
+                    calculate();
+                }
+            } else { // Operator
+                if (currentInput && previousInput) calculate();
+                operator = e.target.textContent;
+                if(currentInput) previousInput = currentInput;
+                currentInput = '';
+            }
+            updateScreen();
+        });
+
+        toggleBtn.addEventListener('click', () => calculator.classList.toggle('hidden'));
+        closeBtn.addEventListener('click', () => calculator.classList.add('hidden'));
+    };
+
+    initQuickCalculator();
 }); 

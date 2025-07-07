@@ -100,6 +100,7 @@ label {
     font-size: 0.9em;
 }
 
+input[type="text"],
 input[type="number"] {
     padding: 8px 10px;
     border-radius: 6px;
@@ -109,10 +110,11 @@ input[type="number"] {
     box-sizing: border-box;
 }
 
+input[type="text"]:focus,
 input[type="number"]:focus {
     outline: none;
     border-color: #1877f2;
-    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
 
 button {
@@ -129,7 +131,7 @@ button {
 }
 
 button:hover {
-    background-color: #166fe5;
+    background-color: #1877f2;
 }
 
 #result-container {
@@ -363,4 +365,104 @@ footer p a:hover {
     .app-layout {
         grid-template-columns: 1fr;
     }
+}
+
+/* Quick Calculator Styles */
+.calculator-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.calculator-widget {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 280px;
+    background-color: #f0f2f5;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+.calculator-header {
+    background-color: #e0e0e0;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.calculator-display {
+    background-color: #222;
+    color: white;
+    padding: 15px;
+}
+
+#calculator-screen {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.2em;
+    text-align: right;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background-color: #ccc;
+}
+
+.calculator-keys button {
+    padding: 20px;
+    font-size: 1.4em;
+    border: none;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #7c7c7c;
+}
+
+.calculator-keys button:hover {
+    background-color: #f0f0f0;
+}
+
+.calculator-keys .operator {
+    background-color: #ddd;
+}
+
+.calculator-keys .equals {
+    grid-row: span 2;
+    background-color: #1877f2;
+    color: white;
+}
+.calculator-keys .zero {
+    grid-column: span 2;
 } 

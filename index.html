@@ -185,6 +185,43 @@
         </footer>
     </div>
 
+    <div id="quick-calculator" class="calculator-widget hidden">
+        <div class="calculator-header">
+            <span>Quick Calculator</span>
+            <button id="close-calculator-btn" class="close-btn">&times;</button>
+        </div>
+        <div class="calculator-display">
+            <input type="text" id="calculator-screen" readonly>
+        </div>
+        <div class="calculator-keys">
+            <button data-key="clear" class="operator">C</button>
+            <button data-key="backspace">⌫</button>
+            <button data-key="/" class="operator">÷</button>
+            <button data-key="*" class="operator">×</button>
+
+            <button data-key="7">7</button>
+            <button data-key="8">8</button>
+            <button data-key="9">9</button>
+            <button data-key="-" class="operator">−</button>
+
+            <button data-key="4">4</button>
+            <button data-key="5">5</button>
+            <button data-key="6">6</button>
+            <button data-key="+" class="operator">+</button>
+
+            <button data-key="1">1</button>
+            <button data-key="2">2</button>
+            <button data-key="3">3</button>
+
+            <button data-key="=" class="equals">=</button>
+
+            <button data-key="0" class="zero">0</button>
+            <button data-key=".">.</button>
+        </div>
+    </div>
+
+    <button id="toggle-calculator-btn" class="calculator-toggle">🧮</button>
+
     <script src="js/constants.js"></script>
     <script src="js/calculator.js"></script>
     <script src="js/main.js"></script>
