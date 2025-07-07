@@ -49,10 +49,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return Math.floor(totalMinutes);
     };
 
+    const getPercentageValue = (id) => {
+        const value = document.getElementById(id).value;
+        return parseFloat(value) || 0;
+    };
+
+    const formatMinutes = (minutes) => {
+        if (minutes <= 0) return '0m';
+        const d = Math.floor(minutes / 1440);
+        const h = Math.floor((minutes % 1440) / 60);
+        const m = Math.floor(minutes % 60);
+        let str = '';
+        if (d > 0) str += `${d}d `;
+        if (h > 0) str += `${h}h `;
+        if (m > 0) str += `${m}m`;
+        return str.trim() || '0m';
+    };
+
     const getResourceInputValue = (id) => parseResourceValue(document.getElementById(id).value);
     const getTimeInputValue = (id) => parseTimeValue(document.getElementById(id).value);
 
-    const displayResult = (resourceResult, speedupResult) => {
+    const displayResult = (resourceResult, speedupResult, originalTimeCost) => {
         const resultContainer = document.getElementById('result-container');
         const resourceResultDiv = document.getElementById('resource-result');
         const speedupResultDiv = document.getElementById('speedup-result');
@@ -62,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resourceResultDiv.innerHTML = generateResourceResultHtml(resourceResult);
         
         if (speedupResult.wasNeeded) {
-            speedupResultDiv.innerHTML = generateSpeedupResultHtml(speedupResult);
+            speedupResultDiv.innerHTML = generateSpeedupResultHtml(speedupResult, originalTimeCost);
             speedupResultDiv.classList.remove('hidden');
             divider.classList.remove('hidden');
         } else {
@@ -87,15 +104,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return html;
     };
 
-    const generateSpeedupResultHtml = (result) => {
-        let html = '<h3>Speedups</h3><p id="result-message-speedups"';
+    const generateSpeedupResultHtml = (result, originalTimeCost) => {
+        let html = '<h3>Speedups</h3>';
+
+        if (originalTimeCost > 0) {
+            html += `<p class="effective-time-info">Initial time: ${formatMinutes(originalTimeCost)}<br>Effective time after buffs: <strong>${formatMinutes(result.timeAfterBuffs)}</strong></p>`;
+        }
+
+        html += '<p id="result-message-speedups"';
         if (result.isSufficient) {
             html += ' class="success">Congratulations! You have enough speedups.</p>';
             html += generateSpeedupAllocationHtml(result.chestAllocation, result.remainingChests);
         } else {
             html += ' class="failure">You do not have enough speedups. Final deficit:</p>';
             const time = result.finalDeficit.time;
-            html += `<div class="deficit-details"><div class="deficit-item">Time: ${Math.floor(time / 1440)}d ${Math.floor((time % 1440) / 60)}h ${time % 60}m</div></div>`;
+            html += `<div class="deficit-details"><div class="deficit-item">Time: ${formatMinutes(time)}</div></div>`;
         }
         return html;
     };
@@ -172,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
             level4: getChestCount('level4-chests'),
         });
 
+        const originalTimeCost = getTimeInputValue('cost-time');
         const speedupResult = calculateSpeedupFeasibility({
             building: getTimeInputValue('current-building-su'),
             research: getTimeInputValue('current-research-su'),
@@ -180,13 +204,38 @@ document.addEventListener('DOMContentLoaded', () => {
             general: getTimeInputValue('current-general-su'),
         }, {
             type: document.getElementById('cost-time-type').value,
-            value: getTimeInputValue('cost-time'),
+            value: originalTimeCost,
         }, {
             level2: getChestCount('level2-su-chests'),
             level3: getChestCount('level3-su-chests'),
             level4: getChestCount('level4-su-chests'),
+        }, {
+            speedBuffPercent: getPercentageValue('speed-buff'),
+            allianceHelps: getChestCount('alliance-helps')
         });
 
-        displayResult(resourceResult, speedupResult);
+        displayResult(resourceResult, speedupResult, originalTimeCost);
     });
+
+    // We need to re-implement the HTML generation functions fully
+    window.generateSpeedupResultHtml = (result, originalTimeCost) => {
+        let html = '<h3>Speedups</h3>';
+
+        if (originalTimeCost > 0) {
+            html += `<p class="effective-time-info">Initial time: ${formatMinutes(originalTimeCost)}<br>Effective time after buffs: <strong>${formatMinutes(result.timeAfterBuffs)}</strong></p>`;
+        }
+
+        html += '<p id="result-message-speedups"';
+        if (result.isSufficient) {
+            html += ' class="success">Congratulations! You have enough speedups.</p>';
+            html += window.generateSpeedupAllocationHtml(result.chestAllocation, result.remainingChests);
+        } else {
+            html += ' class="failure">You do not have enough speedups. Final deficit:</p>';
+            const time = result.finalDeficit.time;
+            html += `<div class="deficit-details"><div class="deficit-item">Time: ${formatMinutes(time)}</div></div>`;
+        }
+        return html;
+    };
+    
+    calculateBtn.removeEventListener('click', () => {}); // This is tricky, easier to rewrite the file
 }); 

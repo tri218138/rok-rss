@@ -51,22 +51,35 @@ function calculateUpgradeFeasibility(currentResources, upgradeCost, selectableCh
     };
 }
 
-function calculateSpeedupFeasibility(currentSpeedups, upgradeCost, selectableSpeedupChests) {
+function calculateSpeedupFeasibility(currentSpeedups, upgradeCost, selectableSpeedupChests, buffs) {
     const upgradeType = upgradeCost.type;
-    const initialTimeCost = upgradeCost.value;
+    let initialTimeCost = upgradeCost.value;
 
     if (!upgradeType || initialTimeCost <= 0) {
         return { isSufficient: true, wasNeeded: false };
+    }
+
+    // Apply buffs
+    const speedBuff = buffs.speedBuffPercent || 0;
+    const allianceHelps = buffs.allianceHelps || 0;
+    
+    let timeAfterBuffs = initialTimeCost;
+    if (speedBuff > 0) {
+        timeAfterBuffs /= (1 + speedBuff / 100);
+    }
+    if (allianceHelps > 0) {
+        // As per user request: each help reduces current time by dividing by 1.01
+        timeAfterBuffs /= Math.pow(1.01, allianceHelps);
     }
 
     const specificSpeedups = currentSpeedups[upgradeType] || 0;
     const generalSpeedups = currentSpeedups.general || 0;
     const totalApplicableSpeedups = specificSpeedups + generalSpeedups;
 
-    const initialDeficit = Math.max(0, initialTimeCost - totalApplicableSpeedups);
+    const initialDeficit = Math.max(0, timeAfterBuffs - totalApplicableSpeedups);
 
     if (initialDeficit === 0) {
-        return { isSufficient: true, wasNeeded: true, initialDeficit: 0, finalDeficit: {}, chestAllocation: {}, remainingChests: selectableSpeedupChests };
+        return { isSufficient: true, wasNeeded: true, timeAfterBuffs: Math.floor(timeAfterBuffs), initialDeficit: 0, finalDeficit: {}, chestAllocation: {}, remainingChests: selectableSpeedupChests };
     }
 
     let remainingDeficit = initialDeficit;
@@ -96,6 +109,7 @@ function calculateSpeedupFeasibility(currentSpeedups, upgradeCost, selectableSpe
     return {
         isSufficient,
         wasNeeded: true,
+        timeAfterBuffs: Math.floor(timeAfterBuffs),
         initialDeficit,
         finalDeficit: isSufficient ? {} : { time: finalDeficit },
         chestAllocation,

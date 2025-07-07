@@ -173,7 +173,7 @@ button:hover {
 }
 
 .time-cost {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 #resource-result, #speedup-result {
@@ -241,4 +241,15 @@ button:hover {
     font-style: italic;
     margin-top: 5px;
     margin-bottom: 10px;
+}
+
+.effective-time-info {
+    background-color: #f7f7f7;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-style: normal !important; /* Override the generic p style */
+    color: #333;
+    line-height: 1.4;
 } 
