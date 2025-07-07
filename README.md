@@ -23,3 +23,9 @@ A web-based calculator to help Rise of Kingdoms players determine if they have e
 ## Deployment
 
 This is a fully static website. You can fork the repository and deploy it instantly on GitHub Pages by enabling it in your repository's settings. 
+
+## Demo
+A full page demo
+![image](https://github.com/user-attachments/assets/6104a5f3-0251-40d0-8bd9-70f78427f25f)
+A quick calculator
+![image](https://github.com/user-attachments/assets/90bcfe18-96bf-42a0-bf48-78b54251a480)
